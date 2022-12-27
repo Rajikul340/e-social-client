@@ -1,0 +1,11 @@
+.post:hover{
+ cursor: pointer;
+}
+input[type='file']{
+    
+/* visibility: hidden; */
+display: none;
+}
+#upload:hover{
+    cursor: pointer;
+}
