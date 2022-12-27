@@ -1,16 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthUser } from "../../AuthContext/AuthContext";
 
 const Header = () => {
+
+  const{logOut, user} = useContext(AuthUser)
+
+   const handleLogOut = () =>{
+     logOut()
+     .then()
+     .catch()
+   }
+ 
+
   const menuItem = (
     <>
       
       <li className="lg:mx-10 lg:hover:text-[#2733FA]"><Link to="/media">Media</Link></li>
       <li className="lg:mx-10 lg:hover:text-[#2733FA]">  <Link to="/message">Message</Link></li>
       <li className="lg:mx-10 lg:hover:text-[#2733FA]">  <Link to="/about">About</Link></li>
-      <li className="lg:mx-10 lg:hover:text-[#2733FA]">  <Link to="/register">Register</Link></li>
+      {
+        user?.email ? <>
+              <li className="lg:mx-10 lg:hover:text-[#2733FA]">  <button onClick={handleLogOut}>signOut</button></li>
+        </>:
+        <>
+            <li className="lg:mx-10 lg:hover:text-[#2733FA]">  <Link to="/register">Register</Link></li>
       <li className="lg:mx-10 lg:hover:text-[#2733FA]">  <Link to="/login">Login</Link></li>
     
+        </>
+      }
     
     </>
   );
