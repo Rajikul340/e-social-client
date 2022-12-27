@@ -5,9 +5,11 @@ const Header = () => {
   const menuItem = (
     <>
       
-      <li className="lg:mx-20"><Link to="/">Media</Link></li>
-      <li className="lg:mx-20">  <Link to="/">Message</Link></li>
-      <li className="lg:mx-20">  <Link to="/">About</Link></li>
+      <li className="lg:mx-10 lg:hover:text-[#2733FA]"><Link to="/media">Media</Link></li>
+      <li className="lg:mx-10 lg:hover:text-[#2733FA]">  <Link to="/message">Message</Link></li>
+      <li className="lg:mx-10 lg:hover:text-[#2733FA]">  <Link to="/about">About</Link></li>
+      <li className="lg:mx-10 lg:hover:text-[#2733FA]">  <Link to="/register">Register</Link></li>
+      <li className="lg:mx-10 lg:hover:text-[#2733FA]">  <Link to="/login">Login</Link></li>
     
     
     </>
@@ -17,11 +19,11 @@ const Header = () => {
     <div>
       <div className="navbar ">
         <div className="navbar-start ">
-          <Link to="/" className=" normal-case text-xl">
-            E-SOCIAL
+          <Link to="/" className=" normal-case text-xl text-[#2733FA] font-semibold">
+            e-SOCIAL
           </Link>
         </div>
-        <ul className="navbar-center  lg:flex   lg:block"
+        <ul className="navbar-center  lg:flex  hidden  lg:block"
         >
             {menuItem}
         </ul>
