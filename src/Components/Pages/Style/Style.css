@@ -4,8 +4,11 @@
 input[type='file']{
     
 /* visibility: hidden; */
-display: none;
+/* display: none; */
 }
 #upload:hover{
     cursor: pointer;
+}
+.userImg{
+  border-radius: 50%;
 }

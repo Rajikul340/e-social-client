@@ -10,8 +10,8 @@ About section. -->
 <!-- 3. The home page will contain 2 more sections except header and footer. -->
 4. First section:
 a. The first section will have the option to add writings from text or textarea
-field .
-b. Upload images option from input field (show your creativity on design)
+<!-- field . -->
+<!-- b. Upload images option from input field (show your creativity on design) -->
 c. Add a “submit” button. After uploading and adding some text in the
 field, when submit button is clicked. The text will be added to the media
 route.

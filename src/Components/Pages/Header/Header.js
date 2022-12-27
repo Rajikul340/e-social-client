@@ -22,6 +22,7 @@ const Header = () => {
       {
         user?.email ? <>
               <li className="lg:mx-10 lg:hover:text-[#2733FA]">  <button onClick={handleLogOut}>signOut</button></li>
+              <img title={user?.displayName} src={user?.photoURL} alt='' referrerPolicy="no-referrer" className="w-16 userImg"/>
         </>:
         <>
             <li className="lg:mx-10 lg:hover:text-[#2733FA]">  <Link to="/register">Register</Link></li>
