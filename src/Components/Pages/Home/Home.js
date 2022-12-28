@@ -9,7 +9,7 @@ const Home = () => {
 
 
   return (
-    <div className="border lg:ml-44 lg:mr-80 bg-white min-h-screen">
+    <div className="border lg:w-1/2 lg:mx-auto bg-white min-h-screen">
       <Post />
     </div>
   );

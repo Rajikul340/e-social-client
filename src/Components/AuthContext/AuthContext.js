@@ -40,8 +40,9 @@ const unSubscribe = onAuthStateChanged(auth, currentUser =>{
 
 })
 
-return unSubscribe()
-
+return ()=>{
+  unSubscribe()
+}
 },[])
 
   const authInfo = {user,loading,createUser, 
