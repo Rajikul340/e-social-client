@@ -41,6 +41,7 @@ const Post = () => {
           name: user?.displayName,
           time,
           email:user?.email,
+        
         };
 
         fetch("http://localhost:5000/mediadata", {

@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import ErrorPage from "../Errorpage/ErrorPage";
 import Layout from "../Layout/Layout";
 import About from "../Pages/About/About";
+import CommentDetails from "../Pages/CommentDetails/CommentDetails";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Media from "../Pages/Media/Media";
@@ -47,6 +48,7 @@ export const router = createBrowserRouter([
           ),
         element: <PostDetails />,
       },
+ 
     ],
   },
 ]);
