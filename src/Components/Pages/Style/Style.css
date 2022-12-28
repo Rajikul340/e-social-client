@@ -12,3 +12,136 @@ input[type='file']{
 .userImg{
   border-radius: 50%;
 }
+
+#comment{
+/* position: relative; */
+width: 25%;
+margin-left: 70%;
+
+
+}
+#comment:hover{
+  background-color: lightgrey;
+}
+#comment-icon{
+  position: absolute;
+  right: 12%;
+  bottom: 5%;
+
+}
+
+.loveBtn{
+ position: absolute;
+bottom: 100%;
+visibility: hidden;
+}
+.loveBtn:hover{
+  visibility: visible;
+}
+.likeBtn button {
+
+}
+.likeBtn{
+  position: relative; 
+}
+.likeBtn:hover{
+  visibility: visible;
+}
+.likeBtn:hover{
+  visibility: visible;
+}
+
+.button {
+  outline: none;
+  border: none;
+  /* background: #2374e1; */
+  /* padding: 0.8rem 1rem; */
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: white;
+}
+.react {
+  display: block;
+  margin-bottom: -27px;
+  width: 70%;
+  
+}
+.react-me {
+  font-family: Helvetica;
+  cursor: pointer;
+  display: block;
+  position: relative;
+}
+.react-me .inner {
+  position: absolute;
+  bottom: 100%;
+  padding-bottom: 15px;
+}
+.react-me:hover .react-box {
+  display: block;
+}
+.react-box {
+  list-style-type: none;
+  
+  display: none;
+  
+  border-radius: 150px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+.react-box ul {
+  margin: 0;
+  padding: 0;
+}
+.react-box li {
+  display: inline-block;
+  width: 48px;
+  height: 48px;
+  transform: scale(0.8) translateY(0);
+  background: url("https://static.xx.fbcdn.net/rsrc.php/v2/yh/r/sqhTN9lgaYm.png")
+    no-repeat;
+  background-size: cover;
+  transition: transform 200ms ease;
+  position: relative;
+}
+.react-box li.like {
+  background-position: 0 -144px;
+}
+.react-box li.love {
+  background-position: 0 -192px;
+}
+.react-box li.haha {
+  background-position: 0 -96px;
+}
+.react-box li.wow {
+  background-position: 0 -288px;
+}
+.react-box li.sad {
+  background-position: 0 -240px;
+}
+.react-box li.angry {
+  background-position: 0 0;
+}
+.react-box li:before {
+  content: attr(data-hover);
+  position: absolute;
+  /* bottom: 120%; */
+  /* left: 50%; */
+  transform: translateX(-50%);
+  color: #fff;
+  padding: 0 8px;
+  border-radius: 20px;
+  font-family: Helvetica, Verdana, Arial;
+  font-weight: bold;
+  line-height: 20px;
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.76);
+  display: none;
+}
+.react-box li:hover {
+  transform: scale(1) translateY(-5px);
+  transition: transform 200ms ease;
+}
+.react-box li:hover:before {
+  display: inline-block;
+}

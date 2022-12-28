@@ -22,7 +22,7 @@ fetch('http://localhost:5000/mediadata')
 
 
     return (
-        <div className=' mx-auto lg:w-1/2 bg-white'>
+        <div className=' mx-auto lg:w-1/2 '>
 
             {
              mediaData.map(singledata=><Singlecard
