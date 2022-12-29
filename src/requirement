@@ -21,10 +21,10 @@ regarding the uploading serial.. -->
 a. Select top 3 posts by the amount of reactions (love/like) given to the
 post.
 b. Display the top 3 popular posts from the media on the basis of 5(a).
-6. There will be a details button for each post. By clicking the “details” button that
-will be routed to another page where we will see details of that particular post.
-7. Each post will have a like or love react option in the post.
-8. Each post will have an option to add comment below the post.
+<!-- 6. There will be a details button for each post. By clicking the “details” button that
+will be routed to another page where we will see details of that particular post. -->
+<!-- 7. Each post will have a like or love react option in the post. -->
+<!-- 8. Each post will have an option to add comment below the post. -->
 9. The “About” route will show your details. (Name, email, university, address)
 10. “About” page will have an “edit” button in the top corner.
 11. By clicking the ‘edit’ button there will be a popup. In the popup there will be

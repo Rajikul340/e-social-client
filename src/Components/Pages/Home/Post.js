@@ -37,8 +37,8 @@ const Post = () => {
         const profile = {
           message,
           postImg: data?.data?.url,
-          image: user?.photoURL,
-          name: user?.displayName,
+          photoURL: user?.photoURL,
+          displayName: user?.displayName,
           time,
           email:user?.email,
         

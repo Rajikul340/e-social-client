@@ -9,6 +9,7 @@ import Media from "../Pages/Media/Media";
 import Message from "../Pages/Message/Message";
 import PostDetails from "../Pages/PostDetails/PostDetails";
 import Register from "../Pages/Register/Register";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -22,15 +23,15 @@ export const router = createBrowserRouter([
       },
       {
         path: "media",
-        element: <Media />,
+        element: <PrivateRoute><Media /></PrivateRoute>,
       },
       {
         path: "message",
         element: <Message />,
       },
       {
-        path: "about",
-        element: <About />,
+        path: "/about/:id",
+        element: <About />
       },
       {
         path: "register",

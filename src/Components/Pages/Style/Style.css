@@ -147,7 +147,12 @@ visibility: hidden;
   display: inline-block;
 }
 
-
+.edit{
+  cursor: pointer;
+}
+.edit:hover{
+  color: #4b43438d;
+}
 
 
 .main-container {

@@ -5,11 +5,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AuthUser } from "../../AuthContext/AuthContext";
 import { Form, Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from 'react-hot-toast';
+import { data } from "autoprefixer";
 
 const Register = () => {
   const [error, setError] = useState("");
   const { createUser, ProfileUdpadted, user, googleLogInUser } = useContext(AuthUser);
   const navigate = useNavigate()
+  console.log(user);
 
   const handleSubmitForm = (event) => {
     event.preventDefault();
@@ -19,11 +21,14 @@ const Register = () => {
     const password = form.password.value;
     const photo = form.photo.files[0];
     console.log(name, email, password, photo);
+   
+
     createUser(email, password)
       .then((result) => {
         const user = result?.user;
-        console.log(user);
-        handleProfileUdate(name, photo);
+        console.log(user)
+       
+        handleProfileUdate(name, photo, email);    
         form.reset();
         toast.success('Register successfully')
         navigate('/')
@@ -32,9 +37,14 @@ const Register = () => {
       .catch((err) => {
         setError(err.message);
       });
+
+
+
+ 
+
   };
 
-  const handleProfileUdate = (name, photo) => {
+  const handleProfileUdate = (name, photo, email) => {
     const formData = new FormData();
     formData.append("image", photo);
     fetch(
@@ -50,13 +60,35 @@ const Register = () => {
         const profile = {
           displayName: name,
           photoURL: data?.data?.url,
+          
         };
+        const users={
+          displayName:name,
+          photoURL:data.data.url,
+          email:email,
+        }
+        
+      fetch('http://localhost:5000/users',{
+      method:"POST",
+      headers:{
+        'content-type': 'application/json'
+      },
+      body:JSON.stringify(users)
+      })
+      .then(res=>res.json())
+      .then(data=>{
+      console.log(data);
+      
+      })
+        
         ProfileUdpadted(profile)
           .then((result) => {
-            console.log(result);
-          })
+              console.log(result);
+         
+            })
           .catch((err) => {
             setError(err.message);
+            console.log(err);
           });
       });
   };
@@ -66,11 +98,15 @@ const handleGoogleBtn = () =>{
   .then(result =>{   
      const user = result.user;
      console.log(user);
-    }
- 
+    })
+  }
 
-  )
-}
+
+
+
+
+
+  
 
   return (
     <div className="">

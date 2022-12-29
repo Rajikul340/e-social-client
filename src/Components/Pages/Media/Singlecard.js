@@ -56,15 +56,16 @@ const Singlecard = ({ singledata }) => {
       <div className="flex items-center">
         <img src={image} className="w-16 rounded-badge" alt="" />
         <p>{name}</p>
+        <p>{message.length}</p>
       </div>
       <figure>
         <img src={postImg} className="border w-12/12" alt="post" />
       </figure>
       <div className="card-body">
         <h2 className="card-title"></h2>
-        <p>{message ? `${message.slice(0, 100)}... ` : ""}</p>
+        <p>{message ? message.slice(0,120): " "}</p>
         <div className="card-actions justify-end">
-          <Link to={`/postdetails/${_id}`}>
+        <Link to={`/postdetails/${_id}`}>
             {" "}
             <button className="btn btn-outline btn-primary">Details</button>
           </Link>
