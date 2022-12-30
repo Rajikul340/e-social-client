@@ -2,12 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import ErrorPage from "../Errorpage/ErrorPage";
 import Layout from "../Layout/Layout";
 import About from "../Pages/About/About";
-import CommentDetails from "../Pages/CommentDetails/CommentDetails";
-import Header from "../Pages/Header/Header";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Media from "../Pages/Media/Media";
-import Message from "../Pages/Message/Message";
 import Messages from "../Pages/Messages/Messages";
 import PostDetails from "../Pages/PostDetails/PostDetails";
 import Register from "../Pages/Register/Register";
@@ -42,6 +39,7 @@ export const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+        loader: () => fetch(`http://localhost:5000/users`),
       },
       {
         path: "login",

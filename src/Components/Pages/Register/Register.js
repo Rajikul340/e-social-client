@@ -1,14 +1,15 @@
 import React, { useContext, useState } from "react";
 import img from "../../images/e-social.png";
 import image from "../../images/e-social-removebg-preview.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AuthUser } from "../../AuthContext/AuthContext";
-import { Form, Link, useNavigate } from "react-router-dom";
-
-import { data } from "autoprefixer";
+import { Form, Link, useLoaderData, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { FcGoogle } from "react-icons/fc";
+
 
 const Register = () => {
+  const data= useLoaderData();
+  console.log(data);
   const [error, setError] = useState("");
   const { createUser, ProfileUdpadted, user, googleLogInUser } = useContext(AuthUser);
   const navigate = useNavigate()
@@ -25,8 +26,7 @@ const Register = () => {
 
     createUser(email, password)
       .then((result) => {
-        const user = result?.user;
-        console.log(user)
+       console.log(result);
        
         handleProfileUdate(name, photo, email);    
         form.reset();
@@ -34,13 +34,10 @@ const Register = () => {
         toast.success(" Register Success !", {
           position: toast.POSITION.TOP_CENTER
         });
-
       })
       .catch((err) => {
         setError(err.message);
       });
- 
-
   };
 
   const handleProfileUdate = (name, photo, email) => {
@@ -83,7 +80,20 @@ const Register = () => {
         ProfileUdpadted(profile)
           .then((result) => {
               console.log(result);
-         
+              const googleUser= result.user;
+              console.log(googleUser);
+              fetch('http://localhost:5000/users',{
+                method:"POST",
+                headers:{
+                  'content-type': 'application/json'
+                },
+                body:JSON.stringify(users)
+                })
+                .then(res=>res.json())
+                .then(data=>{
+                console.log(data);
+                
+                })
             })
           .catch((err) => {
             setError(err.message);
@@ -95,14 +105,34 @@ const Register = () => {
 const handleGoogleBtn = () =>{
   googleLogInUser()
   .then(result =>{   
-     const user = result.user;
+     const loginuser = result.user;
      console.log(user);
+     const users={
+      displayName:loginuser?.displayName,
+      photoURL:loginuser?.photoURL,
+      email:loginuser?.email,
+    }
+  data.map(singleData=>{
+    fetch(`http://localhost:5000/users/${singleData._id}`,{
+      method:"PUT",
+      headers:{
+        'content-type': 'application/json'
+      },
+      body:JSON.stringify(users)
+      })
+      .then(res=>res.json())
+      .then(data=>{
+      console.log(data);
+      toast.success(" Google Login Success !", {
+        position: toast.POSITION.TOP_CENTER
+      });
+      navigate('/')
+      })
+  })
+
+
     })
   }
-
-
-
-
 
 
   
@@ -158,8 +188,8 @@ const handleGoogleBtn = () =>{
                <p>already have an account please <Link className="text-[#2733FA]"  to='/login'>Login</Link></p>
           
             </form>
-            <button onClick={handleGoogleBtn} className=" border w-full mt-4 p-3 rounded-btn">
-                Google Sign In
+            <button onClick={handleGoogleBtn} className=" border flex items-center gap-3 w-full mt-4 p-3 rounded-btn">
+             <FcGoogle/> Google Sign In
               </button>
           </div>
         </div>

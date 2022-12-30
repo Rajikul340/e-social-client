@@ -5,7 +5,7 @@ import { AuthUser } from "../../AuthContext/AuthContext";
 const Header = () => {
   const [singleUser, setSingleUser] = useState([]);
   const { logOut, user } = useContext(AuthUser);
-
+  console.log(user);
   const handleLogOut = () => {
     logOut().then().catch();
   };
@@ -15,11 +15,13 @@ const Header = () => {
       .then((res) => res.json())
       .then((data) => {
         const filterData = data.filter(
-          (newData) => newData?.email === user?.email
+          (newData) => newData.email === user.email 
         );
         setSingleUser(filterData);
+        console.log(filterData);
       });
   }, []);
+
 
   const menuItem = (
     <>
@@ -28,11 +30,11 @@ const Header = () => {
       </li>
 
       <li className="lg:mx-10 lg:hover:text-[#2733FA]">
-        {singleUser.map((singledata) => 
-
-          {return <Link className="" to={`/about/${singledata._id}`}>About</Link>}
-          
-        )}
+        {
+          singleUser.map(singledata=><p key={singledata._id}>
+             <Link to={`/about/${singledata._id}`}>About</Link>
+          </p>)
+        }
       </li>
       
       <li className="lg:mx-10 lg:hover:text-[#2733FA]">

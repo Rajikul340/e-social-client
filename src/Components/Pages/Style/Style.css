@@ -15,14 +15,12 @@ input[type='file']{
 
 #comment{
 /* position: relative; */
-width: 25%;
-margin-left: 70%;
 outline: none;
-border-radius: 10px;
-
 }
 #comment:hover{
   background-color: lightgrey;
+  border-radius: 20px;
+  outline: #0fcfff;
 }
 #comment-icon{
   position: absolute;
@@ -146,7 +144,17 @@ visibility: hidden;
 .react-box li:hover:before {
   display: inline-block;
 }
+.active-like{
+  color: #1b0fff;
+}
+.active-dislike{
+color: #0fcfff;
+}
+.btn-like{
+  color: black;
 
+ 
+}
 .edit{
   cursor: pointer;
 }

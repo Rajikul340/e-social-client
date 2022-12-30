@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import img from "../../images/e-social.png";
 import image from "../../images/e-social-removebg-preview.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AuthUser } from "../../AuthContext/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
 
 
 
@@ -18,7 +18,6 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-
     console.log(email, password);
 
     loginUser(email, password)
@@ -36,12 +35,6 @@ const Login = () => {
       });
   };
 
-  const handleGoogleBtn = () => {
-    googleLogInUser().then((result) => {
-      const user = result.user;
-      console.log(user);
-    });
-  };
 
   return (
     <div className="">
@@ -84,12 +77,6 @@ const Login = () => {
                 </Link>
               </p>
             </form>
-            <button
-              onClick={handleGoogleBtn}
-              className=" border w-full mt-4 p-3 rounded-btn"
-            >
-              Google Sign In
-            </button>
           </div>
         </div>
       </div>
