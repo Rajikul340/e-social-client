@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { AuthUser } from "../../AuthContext/AuthContext";
 
 const Header = () => {
+  const [singleUser, setSingleUser] = useState([]);
   const { logOut, user } = useContext(AuthUser);
-  const [userdata, setUserdata] = useState([]);
+
   const handleLogOut = () => {
     logOut().then().catch();
   };
@@ -13,30 +14,31 @@ const Header = () => {
     fetch("http://localhost:5000/users")
       .then((res) => res.json())
       .then((data) => {
-        const filterdata = data.filter(
-          (newdata) => newdata.email === user.email
+        const filterData = data.filter(
+          (newData) => newData?.email === user?.email
         );
-        setUserdata(filterdata);
+        setSingleUser(filterData);
       });
-  }, [user.email]);
-
-  console.log();
+  }, []);
 
   const menuItem = (
     <>
       <li className="lg:mx-10 lg:hover:text-[#2733FA]">
         <Link to="/media">Media</Link>
       </li>
-      <li className="lg:mx-10 lg:hover:text-[#2733FA]">
-        {" "}
-        <Link to="/message">Message</Link>
-      </li>
 
       <li className="lg:mx-10 lg:hover:text-[#2733FA]">
-        {userdata.map((singledata) => (
-          <Link to={`/about/${singledata._id}`}>About</Link>
-        ))}
+        {singleUser.map((singledata) => 
+
+          {return <Link className="" to={`/about/${singledata._id}`}>About</Link>}
+          
+        )}
       </li>
+      
+      <li className="lg:mx-10 lg:hover:text-[#2733FA]">
+        <Link to="/messages">Message</Link>
+      </li>
+
       {user?.email ? (
         <>
           <li className="lg:mx-10 lg:hover:text-[#2733FA]">

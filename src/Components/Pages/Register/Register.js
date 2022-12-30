@@ -4,15 +4,15 @@ import image from "../../images/e-social-removebg-preview.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AuthUser } from "../../AuthContext/AuthContext";
 import { Form, Link, useNavigate } from "react-router-dom";
-import toast, { Toaster } from 'react-hot-toast';
+
 import { data } from "autoprefixer";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [error, setError] = useState("");
   const { createUser, ProfileUdpadted, user, googleLogInUser } = useContext(AuthUser);
   const navigate = useNavigate()
   console.log(user);
-
   const handleSubmitForm = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -30,16 +30,15 @@ const Register = () => {
        
         handleProfileUdate(name, photo, email);    
         form.reset();
-        toast.success('Register successfully')
         navigate('/')
+        toast.success(" Register Success !", {
+          position: toast.POSITION.TOP_CENTER
+        });
 
       })
       .catch((err) => {
         setError(err.message);
       });
-
-
-
  
 
   };

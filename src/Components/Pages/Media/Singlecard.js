@@ -53,10 +53,10 @@ const Singlecard = ({ singledata }) => {
 
     
     <div className="card  bg-base-100 shadow-xl mt-4">
-      <div className="flex items-center">
-        <img src={image} className="w-16 rounded-badge" alt="" />
+      <div className="flex items-center gap-2 p-2">
+        <img src={image} className="w-8 h-8 rounded-full" alt="" />
         <p>{name}</p>
-        <p>{message.length}</p>
+
       </div>
       <figure>
         <img src={postImg} className="border w-12/12" alt="post" />

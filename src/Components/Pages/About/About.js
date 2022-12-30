@@ -2,61 +2,94 @@ import React, { useContext, useEffect, useState } from "react";
 import { AiFillEdit } from "react-icons/ai";
 import { MdPermMedia } from "react-icons/md";
 import { useLoaderData } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthUser } from "../../AuthContext/AuthContext";
 import Header from "../Header/Header";
+import Spinner from "../spinner/Spinner";
 
 const About = () => {
+  const loadData= useLoaderData();
   const { user } = useContext(AuthUser);
-  const [photo, setphoto] = useState(null);
-  const [userdata, setUserdata] = useState([]);
-  console.log(userdata);
+  const [photos, setphoto] = useState(null);
+  const [newuser,setNewuser] =useState(loadData);
+ const[loader, setLoader] = useState(false);
+
   const handleInputChange = (event) => {
     setphoto(URL.createObjectURL(event.target.files[0]));
   };
 
-  useEffect(() => {
-    fetch("http://localhost:5000/users")
-      .then((res) => res.json())
-      .then((data) => {
-        const filterdata = data.filter(
-          (newdata) => newdata.email === user.email
-        );
-        setUserdata(filterdata);
-      });
-  }, [user.email]);
+
+
   const handleSubmitForm = (event) => {
     event.preventDefault();
-    const form = event.target;
-    const name = form.name.value;
-    const email = form.email.value;
-    console.log(name, email);
-    userdata.map((singledata) => {
-      fetch(`http://localhost:5000/users/${singledata._id}`, {
+    setLoader(true)
+    console.log(event.target.value);
+     const form = event.target;
+     const img = form.photoURL.files[0]
+    console.log(img);
+
+    const formData = new FormData();
+    formData.append("images", img);
+    fetch("https://api.imgbb.com/1/upload?key=19900dd0d8e1013079c1d14e32346566", {
+        method: "POST",
+        body: formData,
+      })
+    .then(res=>res.json())
+    .then(data=>{
+      console.log(data);
+    })
+  
+      fetch(`http://localhost:5000/users/${loadData._id}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
         },
-        body: JSON.stringify(user),
+        body:JSON.stringify(newuser),
       })
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
+          setLoader(false)
+          toast.success("profile updated !", {
+            position: toast.POSITION.TOP_CENTER
+          });
+          form.reset();
         });
-    });
+
   };
+
+  const handleInputChanges = (event) =>{
+    const field = event.target.name;
+    const value = event.target.value;
+    const newUser = {...newuser}
+    newUser[field] = value;
+    console.log(value);
+    setNewuser(newUser);
+}
 
   return (
     <div className="">
-      <h1 className="lg:text-5xl md:text-4xl text-2xl text-center font-semibold">
-        Edit Your Profile{" "}
+
+
+ 
+        <h1 className="lg:text-5xl md:text-4xl text-2xl text-center font-semibold">
+        Edit Your Profile
       </h1>
 
-      <div className="flex ">
-        <div className="p-2 border min-h-screen ">
-          {photo ? (
+      <form className="flex
+      
+      "
+      onSubmit={handleSubmitForm}
+      >
+
+        <div
+   
+        className="p-2 border min-h-screen ">
+
+          {photos ? (
             <>
               <img
-                src={photo}
+                src={photos}
                 className="rounded-full lg:w-40 lg:h-40 md:w-40 md:h-40 w-20 h-20 relative"
                 alt=""
               />
@@ -81,28 +114,28 @@ const About = () => {
           </label>
           <input
             type="file"
-            name="photo"
+            name="photoURL"
             className="w-full border p-2 form-control hidden "
             onChange={handleInputChange}
             id="input"
           />
           <h3 className="lg:text-xl md:text-lg font-bold">
-            {user?.displayName}
+            {loadData?.displayName}
           </h3>
-          <p className="lg:text-lg md:text-lg font-semibold">{user?.email}</p>
+          <p className="lg:text-lg md:text-lg font-semibold">{loadData?.email}</p>
         </div>
 
         <div className="flex-1  ">
-          <form
-            onSubmit={handleSubmitForm}
-            className="border  flex flex-col  p-4"
+          <div
+           
+            className="border form-control  flex flex-col  p-4"
           >
             <label>Full Name</label>
             <input
               type="text"
-              name="name"
-              defaultValue={user?.displayName}
-              placeholder="Full Name"
+              name="displayName"
+              onChange={handleInputChanges}
+              defaultValue={loadData?.displayName}
               className="input input-bordered w-full  max-w-xs"
             />
             <label>Email</label>
@@ -110,17 +143,19 @@ const About = () => {
               required
               type="email"
               name="email"
-              defaultValue={user?.email}
-              placeholder="Email"
+              onChange={handleInputChanges}
+              defaultValue={loadData?.email}
               className="input input-bordered w-full max-w-xs"
             />
 
             <button type="submit" className="btn btn-primary mt-4">
-              save
+             { loader &&
+              loader ? <Spinner/> : 'save'
+             }
             </button>
-          </form>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 };

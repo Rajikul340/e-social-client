@@ -43,6 +43,7 @@ const Post = () => {
           email:user?.email,
         
         };
+        //https://e-social-server.vercel.app
 
         fetch("http://localhost:5000/mediadata", {
           method: "POST",
@@ -76,7 +77,7 @@ const Post = () => {
                   src={user?.photoURL}
                   alt=""
                   referrerPolicy="no-referrer"
-                  className="w-16 userImg"
+                  className="w-16 h-16 userImg  "
                 />
                 <p>{user?.displayName}</p>
               </div>

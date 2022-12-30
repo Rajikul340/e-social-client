@@ -153,6 +153,10 @@ visibility: hidden;
 .edit:hover{
   color: #4b43438d;
 }
+.spinner{
+  border: 1px dashed black;
+  border-radius: 100%;
+}
 
 
 .main-container {

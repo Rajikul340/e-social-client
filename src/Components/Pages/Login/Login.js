@@ -4,7 +4,10 @@ import image from "../../images/e-social-removebg-preview.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AuthUser } from "../../AuthContext/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
-import toast, { Toaster } from 'react-hot-toast';
+import { toast } from "react-toastify";
+
+
+
 const Login = () => {
   const [error, setError] = useState("");
   const { loginUser, googleLogInUser, user } = useContext(AuthUser);
@@ -22,7 +25,9 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        toast.success('Login successfull')
+        toast.success("Login Success  !", {
+          position: toast.POSITION.TOP_CENTER
+        });
         navigate('/')
       })
       .catch((err) => {
