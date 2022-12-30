@@ -11,32 +11,31 @@ const Header = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch(" https://e-social-server.vercel.app/users")
       .then((res) => res.json())
       .then((data) => {
         const filterData = data.filter(
-          (newData) => newData.email === user.email 
+          (newData) => newData.email !== user.email
         );
         setSingleUser(filterData);
         console.log(filterData);
       });
   }, []);
 
-
   const menuItem = (
     <>
-      <li className="lg:mx-10 lg:hover:text-[#2733FA]">
+      <li className="lg:mx-10  p-0 lg:hover:text-[#2733FA]">
         <Link to="/media">Media</Link>
       </li>
 
       <li className="lg:mx-10 lg:hover:text-[#2733FA]">
-        {
-          singleUser.map(singledata=><p key={singledata._id}>
-             <Link to={`/about/${singledata._id}`}>About</Link>
-          </p>)
-        }
+        {singleUser.map((singledata) => (
+          <p key={singledata._id}>
+            <Link to={`/about/${singledata._id}`}>About</Link>
+          </p>
+        ))}
       </li>
-      
+
       <li className="lg:mx-10 lg:hover:text-[#2733FA]">
         <Link to="/messages">Message</Link>
       </li>
@@ -58,7 +57,6 @@ const Header = () => {
       ) : (
         <>
           <li className="lg:mx-10 lg:hover:text-[#2733FA]">
-            {" "}
             <Link to="/register">Register</Link>
           </li>
           <li className="lg:mx-10 lg:hover:text-[#2733FA]">
@@ -83,7 +81,7 @@ const Header = () => {
         </div>
         <ul className="navbar-center  lg:flex  hidden  lg:block">{menuItem}</ul>
 
-        <div className="navbar-end     lg:hidden">
+        <div className="navbar-end  lg:hidden">
           <div className="dropdown ">
             <label tabIndex={0} className="btn btn-ghost btn-circle">
               <svg
@@ -103,8 +101,8 @@ const Header = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 
-                shadow bg-base-100 rounded-box w-48"
+              className="menu p-0 mr-0 menu-compact dropdown-content 
+                shadow bg-base-100 rounded-box  "
             >
               {menuItem}
             </ul>

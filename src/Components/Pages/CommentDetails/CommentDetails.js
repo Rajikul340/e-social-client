@@ -9,7 +9,7 @@ const { image, message, postImg, name, time, _id } = singledata;
 
 useEffect(()=>{
     setLoading(true)
-    fetch('http://localhost:5000/comment')
+    fetch(' https://e-social-server.vercel.app/comment')
     .then(res=>res.json())
     .then(data=>{
         const ReviewData = data.filter((RevId) => RevId.postId === _id);

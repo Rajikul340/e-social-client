@@ -45,7 +45,7 @@ const Post = () => {
         };
         //https://e-social-server.vercel.app
 
-        fetch("http://localhost:5000/mediadata", {
+        fetch(" https://e-social-server.vercel.app/mediadata", {
           method: "POST",
           headers: {
             "content-type": "application/json",

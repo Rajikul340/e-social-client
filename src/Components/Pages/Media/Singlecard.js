@@ -7,6 +7,7 @@ import CommentDetails from "../CommentDetails/CommentDetails";
 import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
 
 const Singlecard = ({ singledata, userdata }) => {
+  console.log('userdata', userdata);
   const { user } = useContext(AuthUser);
   const [loading, setLoading] = useState(true);
   const { photoURL, message, postImg, displayName, time, _id } = singledata;
@@ -60,7 +61,7 @@ const Singlecard = ({ singledata, userdata }) => {
       postId: _id,
     };
     setLoading(true);
-    fetch("http://localhost:5000/comment", {
+    fetch(" https://e-social-server.vercel.app/comment", {
       method: "POST",
       headers: {
         "content-type": "application/json",

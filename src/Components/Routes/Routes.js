@@ -33,13 +33,13 @@ export const router = createBrowserRouter([
       {
         path: "/about/:id",
         element: <PrivateRoute><About /></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/users/${params.id}`)
+        loader: ({params}) => fetch(` https://e-social-server.vercel.app/users/${params.id}`)
 
       },
       {
         path: "register",
         element: <Register />,
-        loader: () => fetch(`http://localhost:5000/users`),
+        loader: () => fetch(` https://e-social-server.vercel.app/users`),
       },
       {
         path: "login",
@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
         path: "postdetails/:id",
         loader: ({ params }) =>
           fetch(
-            `http://localhost:5000/mediadata/${params.id}`
+            ` https://e-social-server.vercel.app/mediadata/${params.id}`
           ),
         element: <PostDetails />,
       },

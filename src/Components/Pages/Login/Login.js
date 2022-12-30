@@ -44,7 +44,7 @@ const Login = () => {
           <div className="">
             <img src={image} alt="" className=" bg-[#2733FA] " />
           </div>
-          <div className="w-1/2">
+          <div className="lg:w-1/2 w-full">
             <form
               onSubmit={handleSubmitForm}
               className="border  flex flex-col p-4"
@@ -67,7 +67,7 @@ const Login = () => {
               />
               <p className="text-red-500">{error}</p>
 
-              <button type="submit" className="btn btn-primary mt-4">
+              <button type="submit" className="btn btn-primary mt-4 max-w-xs ">
                 login
               </button>
               <p>

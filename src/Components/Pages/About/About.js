@@ -39,7 +39,7 @@ const About = () => {
       console.log(data);
     })
   
-      fetch(`http://localhost:5000/users/${loadData._id}`, {
+      fetch(` https://e-social-server.vercel.app/users/${loadData._id}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

@@ -8,7 +8,7 @@ const Media = () => {
 const[userdata, setUserdata] = useState([])
 
  useEffect(()=>{
-fetch('http://localhost:5000/mediadata')
+fetch(' https://e-social-server.vercel.app/mediadata')
 .then(res=>res.json())
 .then(data=>{
 
@@ -22,7 +22,7 @@ fetch('http://localhost:5000/mediadata')
 
 
  useEffect(()=>{
-    fetch('http://localhost:5000/users')
+    fetch(' https://e-social-server.vercel.app/users')
     .then(res=>res.json())
     .then(data=>{
       setUserdata(data)

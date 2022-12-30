@@ -64,7 +64,7 @@ const Register = () => {
           email:email,
         }
         
-      fetch('http://localhost:5000/users',{
+      fetch(' https://e-social-server.vercel.app/users',{
       method:"POST",
       headers:{
         'content-type': 'application/json'
@@ -82,7 +82,7 @@ const Register = () => {
               console.log(result);
               const googleUser= result.user;
               console.log(googleUser);
-              fetch('http://localhost:5000/users',{
+              fetch(' https://e-social-server.vercel.app/users',{
                 method:"POST",
                 headers:{
                   'content-type': 'application/json'
@@ -113,7 +113,7 @@ const handleGoogleBtn = () =>{
       email:loginuser?.email,
     }
   data.map(singleData=>{
-    fetch(`http://localhost:5000/users/${singleData._id}`,{
+    fetch(` https://e-social-server.vercel.app/users/${singleData._id}`,{
       method:"PUT",
       headers:{
         'content-type': 'application/json'
